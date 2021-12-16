@@ -1,34 +1,36 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { Button, Image  } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
 const image = { uri: "https://reactjs.org/logo-og.png" };
+const {height, width} = Dimensions.get("screen")
 
 export function SplashScreen2({ navigation }) {
     return (  
         <View style={{flex:1}}>
-            <LinearGradient colors={['#00ff9b', '#00734a']} style={styles.container}>
-            <Image
-                source={image}
-                style={{ width: 300, height: 300, marginBottom: 100 }}
-            />
-            <Button
-                title="Go to Register"
-                onPress={() => navigation.navigate('Register')}
-                buttonStyle={styles.registerButtonStyle}
-                titleStyle={styles.buttonTitle}
-            />
-            <Button
-                title="Capture Attendance"
-                onPress={() => navigation.navigate('Capture')}
-                buttonStyle={styles.captureButtonStyle}
-                titleStyle={styles.captureButtonTitle}
-                //type="outline"
-            />
-            </LinearGradient>   
+          <LinearGradient colors={['#00ef9b', '#013d28']} style={styles.container}>
+          <Image
+            source={require('../assets/attendance-icon.jpg')}
+            style={{ width: width*0.8, height: height*0.5,}}
+          />
+          <Button
+            title="Go to Register"
+            onPress={() => navigation.navigate('Register')}
+            buttonStyle={styles.registerButtonStyle}
+            titleStyle={styles.registerButtonTitle}
+            containerStyle={styles.registerButtonContainer}
+          />
+          <Button
+            title="Capture Attendance"
+            onPress={() => navigation.navigate('CaptureAttendance')}
+            buttonStyle={styles.captureButtonStyle}
+            titleStyle={styles.captureButtonTitle}
+            containerStyle={styles.captureButtonContainer}
+            //type="outline"
+          />
+          </LinearGradient>   
         </View>
-      
     );
   }
   
@@ -37,37 +39,46 @@ export function SplashScreen2({ navigation }) {
       flex: 1,
       alignItems: 'center', 
       justifyContent: 'center',
+      width:'100%'
     },
     font: {
       fontWeight: 'bold',
       fontSize: 30,
     },
     registerButtonStyle: {
-      margin:10,
       backgroundColor:"#00ff8a",
-      borderRadius:40,
-      height:80,
-      width:300,
+      height:"100%",
+      width:width*0.8,
       shadowColor:"#00d959",
       shadowRadius:10
     },
-    buttonTitle:{
+    registerButtonContainer:{
+      height:"12%",
+      borderRadius:40,
+      margin:"4%",
+    },
+    registerButtonTitle:{
       color:"#ffffff",
-      //fontWeight: 'bold',
       fontSize: 26,
     },
     captureButtonStyle: {
-        margin:10,
-        backgroundColor:"00db5a",
-        borderRadius:30,
-        height:60,
-        width:300,
-        borderWidth:2,
-        borderColor:"#00ff8a"
+      backgroundColor:"00db5a",
+      borderRadius:30,
+      height:"100%",
+      width:width*0.8,
+      borderWidth:2,
+      borderColor:"#00ff8a"
     },
     captureButtonTitle:{
       color:"#00ff8a",
       fontSize: 24,
     },
-    
+    captureButtonContainer:{
+      height:"8%",
+      borderRadius:40,
+      margin:10,
+    },
+    image:{
+
+    }
   });

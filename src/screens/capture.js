@@ -1,17 +1,14 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, StyleSheet, Image} from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux'; 
 import { setCurrentImage } from '../redux/actions';
 
 export function CaptureScreen({ navigation }) {
 
     const [{ cameraRef }, { takePicture }] = useCamera(null);
-    
     const dispatch = useDispatch();
 
     const captureHandle = async () => {
@@ -25,21 +22,24 @@ export function CaptureScreen({ navigation }) {
     }
 
     return (
-      <View style={styles.container}>  
-        <RNCamera
-          ref={cameraRef}
-          type={RNCamera.Constants.Type.front}
-          style={styles.preview}  
-        >
-          <Icon 
-            name="camera" 
-            size={50} 
-            color="#ffffff"
-            style={styles.captureButton}
-            onPress={() => captureHandle()}
-          />
-        </RNCamera>
-      </View>
+    <View style={styles.container}>  
+      <RNCamera
+        ref={cameraRef}
+        type={RNCamera.Constants.Type.front}
+        style={styles.preview}  
+      >
+        <Image 
+          source={require('../assets/user-outline2.png')}
+          style={{ width: "100%", height: "45%", marginBottom: "30%" , transform: [{rotateY: '180deg'}]}}/>
+        <Icon 
+          name="camera" 
+          size={50} 
+          color="#ffffff"
+          style={styles.captureButton}
+          onPress={() => captureHandle()}
+        />  
+      </RNCamera>
+    </View>
     );
   }
 
@@ -55,6 +55,6 @@ export function CaptureScreen({ navigation }) {
       justifyContent:'flex-end',
     },
     captureButton:{
-      marginBottom:40,
+      marginBottom:"13%",
     }
   })
